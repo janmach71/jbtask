@@ -24,7 +24,31 @@
                 $(".ajax-loader-background").fadeOut("slow")
                 $(".ajax-loader-foreground").fadeOut("slow")
             });
+        	loadFolder("/","root");
         });
+        var loadFolder = function(path,element_id) {
+                var url = "${pageContext.request.contextPath}/api/v1/api.jsp?dir=" + encodeURIComponent(path);
+                $.ajax({
+                    url: url,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: "GET",
+                    success: function(data) {
+                      displayFolderContent(data,element_id);
+                    },
+                    error: function () {
+                      alert("Error loading folder content..." );
+                    }
+                });
+        }
+        var displayFolderContent = function(data,element_id) {
+            html = generateHTML(data);
+            $("#"+element_id)[0].innerHTML=html;
+        }
+        var generateHTML = function(data) {
+            return data;
+        }
         </script>
         <style>
             .ajax-loader {
@@ -45,8 +69,8 @@
 
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <img src="/img/ajax-loader-good.gif"/>
+        <h1>File Manager</h1>
+        <div class="root"></div>
         <div class="ajax-loader"></div>
     </body>
 </html>
