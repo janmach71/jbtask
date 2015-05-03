@@ -27,7 +27,7 @@
         	loadFolder("/","root");
         });
         var loadFolder = function(path,element_id) {
-                var url = "${pageContext.request.contextPath}/api/v1/api.jsp?dir=" + encodeURIComponent(path);
+                var url = "http://env-6068157.unicloud.pl/api/v1/api.jsp?dir=" + encodeURIComponent(path);
                 $.ajax({
                     url: url,
                     cache: false,
@@ -70,6 +70,7 @@
     </head>
     <body>
         <h1>File Manager</h1>
+        <p>The context path is: ${pageContext.request.contextPath}.</p>
         <div class="root"></div>
         <div class="ajax-loader"></div>
     </body>
