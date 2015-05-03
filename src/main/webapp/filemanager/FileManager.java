@@ -1,4 +1,4 @@
-package main.filemanager;
+package main.webapp.filemanager;
 
 import java.util.List;
 
