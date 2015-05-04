@@ -57,7 +57,7 @@
                 html +="<li class='filelistitem'>";
                 var i = dir.dir[index].i;
                 //console.log(i);
-                encoded = encodeURIComponent(i.n).replace("%","X");
+                encoded = encodeURIComponent(i.n).split("%").join("X");
                 console.log(encoded);
                 switch(i.t) {
                 case "image":
@@ -111,7 +111,7 @@
                 background: url(/img/ajax-loader-good.gif) center no-repeat #fff;
             }
 
-            ul .filelist
+            .filelist
             {
                 list-style-type: none;
             }
