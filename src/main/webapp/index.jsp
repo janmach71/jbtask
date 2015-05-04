@@ -53,7 +53,7 @@
             var i;
             var html = "";
             for ( i in dir.dir ) {
-                console.log(i.n + " " + i.t);
+                console.log(i);
                 switch(i.t) {
                 case "image":
                     html +="<img src=\"/img/image.png\" />&nbsp;";
