@@ -26,18 +26,18 @@ public class FileManager {
         //keep in list, so we can sort on arbitrary property
         List<DirItem> list = getDir(dir);
         String col="";
-        out.write("\"dir\" : [\n");
+        out.write("{\"dir\" : [\n");
         for (DirItem item : list) {
             out.write(col);
-            out.write("\"i\" : {\n");
+            out.write("{\"i\" : {\n");
             out.write("\"n\" : \"");
             out.write(item.getName());
             out.write("\",\n");
             out.write("\"t\" : \"");
             out.write(item.getType().toString());
-            out.write("\"}");
+            out.write("\"}}");
             col=",";
         }
-        out.write( "]" );
+        out.write( "]}" );
     }
 }
