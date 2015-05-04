@@ -30,16 +30,18 @@ public class DirItem {
             return Type.folder;
         }
         String mimeType = URLConnection.guessContentTypeFromName(name);
-        int i = mimeType.indexOf('/');
-        if (i > 0) {
-            Type t = types.get(mimeType.substring(0, i));
-            if (t!=null) {
+        if (mimeType != null) {
+            int i = mimeType.indexOf('/');
+            if (i > 0) {
+                Type t = types.get(mimeType.substring(0, i));
+                if (t != null) {
+                    return t;
+                }
+            }
+            Type t = types.get(mimeType);
+            if (t != null) {
                 return t;
             }
-        }
-        Type t = types.get(mimeType);
-        if (t!=null) {
-            return t;
         }
         return Type.unknown;
     }
