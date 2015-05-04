@@ -54,7 +54,9 @@
             var html = "";
             for ( index in dir.dir ) {
                 var i = dir.dir[index].i;
-                console.log(i);
+                //console.log(i);
+                encoded = encodeURIComponent(i.n).replace("%","X");
+                console.log(encoded);
                 switch(i.t) {
                 case "image":
                     html +="<img src=\"/img/image.png\" />&nbsp;";
@@ -68,15 +70,15 @@
                     break;
                 case "archive":
                     html +="<img src=\"/img/archive.png\" />&nbsp;";
-                    html +="<a onclick=\"loadFolder('"+i.n+"')\">" + i.n +"</a>";
+                    html +="<a onclick=\"loadFolder('"+i.n+"','"+encoded+"')\">" + i.n +"</a>";
                     html +="<br>";
-                    html +="<div id=\""+i.n+"\"></div>";
+                    html +="<div id=\""+encoded+"\"></div>";
                     break;
                 case "folder":
                     html +="<img src=\"/img/folder.png\" />&nbsp;";
-                    html +="<a onclick=\"loadFolder('"+i.n+"')\">" + i.n +"</a>";
+                    html +="<a onclick=\"loadFolder('"+i.n+"','"+encoded+"')\">" + i.n +"</a>";
                     html +="<br>";
-                    html +="<div id=\""+i.n+"\"></div>";
+                    html +="<div id=\""+encoded+"\"></div>";
                     break;
                 case "unknown":
                     html +="<img src=\"/img/unknown.png\" />&nbsp;";
