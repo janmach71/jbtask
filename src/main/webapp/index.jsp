@@ -53,7 +53,7 @@
             var i;
             var html = "";
             for ( index in dir.dir ) {
-                var i = dir.dir[index];
+                var i = dir.dir[index].i;
                 console.log(i);
                 switch(i.t) {
                 case "image":
