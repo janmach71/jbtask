@@ -12,18 +12,17 @@ public class DirItem {
     enum Type {
         image,
         text,
-        zip,
+        archieve,
         folder,
         unknown
     }
-    //String mimeType;
     String name;
     Type type;
     private static Map<String,Type> types = new HashMap<String, Type>();
     static {
         types.put("image/",Type.image);
         types.put("text/",Type.text);
-        types.put("application/zip",Type.zip);
+        types.put("application/zip",Type.archieve);
     }
     protected Type determineType(File file) {
         if (file.isDirectory()) {
@@ -47,6 +46,9 @@ public class DirItem {
     }
     String getName() {
         return name;
+    }
+    Type getType() {
+        return type;
     }
     DirItem(File file) {
         this.name = file.getAbsolutePath();
