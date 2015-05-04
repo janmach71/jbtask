@@ -47,10 +47,12 @@
             $("#"+element_id)[0].innerHTML=html;
         }
         var generateHTML = function(data) {
+            console.log(data);
             var items = jQuery.parseJSON( data );
             var i;
             var html = "";
             for ( i in items ) {
+                console.log(i.n + " " + i.t);
                 switch(i.t) {
                 case "image":
                     html +="<img src=\"/img/image.png\" />&nbsp;";
