@@ -64,12 +64,15 @@
                     break;
                 case "archive":
                     html +="<img src=\"/img/archive.png\" />&nbsp;";
+                    html +="<a onclick=\"loadFolder('"+i.n+"')\">" + i.n +"</a>";
+                    html +="<br>";
+                    html +="<div id=\""+i.n+"\"></div>";
                     break;
                 case "folder":
                     html +="<img src=\"/img/folder.png\" />&nbsp;";
-                    html +="<a onclick=\"loadFolder("+i.n+"\"" + i.n;
+                    html +="<a onclick=\"loadFolder('"+i.n+"')\">" + i.n +"</a>";
                     html +="<br>";
-                    html +="<div id=>";
+                    html +="<div id=\""+i.n+"\"></div>";
                     break;
                 case "unknown":
                     html +="<img src=\"/img/unknown.png\" />&nbsp;";
@@ -77,7 +80,7 @@
                     html +="<br>";
                     break;
             }
-            return data;
+            return html;
         }
         </script>
         <style>
