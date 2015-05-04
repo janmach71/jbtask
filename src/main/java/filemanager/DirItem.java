@@ -25,8 +25,8 @@ public class DirItem {
         types.put("text/",Type.text);
         types.put("application/zip",Type.zip);
     }
-    protected Type determineType(String name) {
-        if (new File(name).isDirectory()) {
+    protected Type determineType(File file) {
+        if (file.isDirectory()) {
             return Type.folder;
         }
         String mimeType = URLConnection.guessContentTypeFromName(name);
@@ -46,8 +46,8 @@ public class DirItem {
     String getName() {
         return name;
     }
-    DirItem(String name) {
-        this.name = name;
-        this.type=determineType(name);
+    DirItem(File file) {
+        this.name = file.getAbsolutePath();
+        this.type=determineType(file);
     }
 }
