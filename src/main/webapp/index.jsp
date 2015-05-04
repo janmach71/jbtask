@@ -48,8 +48,8 @@
         }
         var generateHTML = function(data) {
             console.log(data);
-            var items = jQuery.parseJSON( data );
-            console.log(items);
+            var dir = jQuery.parseJSON( data );
+            console.log(dir.dir);
             var i;
             var html = "";
             for ( i in items ) {
