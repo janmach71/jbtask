@@ -12,7 +12,7 @@ public class DirItem {
     enum Type {
         image,
         text,
-        archieve,
+        archive,
         folder,
         unknown
     }
@@ -22,7 +22,7 @@ public class DirItem {
     static {
         types.put("image/",Type.image);
         types.put("text/",Type.text);
-        types.put("application/zip",Type.archieve);
+        types.put("application/zip",Type.archive);
     }
     protected Type determineType(File file) {
         if (file.isDirectory()) {

@@ -47,6 +47,36 @@
             $("#"+element_id)[0].innerHTML=html;
         }
         var generateHTML = function(data) {
+            var items = jQuery.parseJSON( jsonString );
+            var i;
+            var html = "";
+            for ( i in items ) {
+                switch(i.t) {
+                case "image":
+                    html +="<img src=\"/img/image.png\" />&nbsp;";
+                    html +=i.n;
+                    html +="<br>";
+                    break;
+                case "text":
+                    html +="<img src=\"/img/text.png\" />&nbsp;";
+                    html +=i.n;
+                    html +="<br>";
+                    break;
+                case "archive":
+                    html +="<img src=\"/img/archive.png\" />&nbsp;";
+                    break;
+                case "folder":
+                    html +="<img src=\"/img/folder.png\" />&nbsp;";
+                    html +="<a onclick=\"loadFolder("+i.n+"\"" + i.n;
+                    html +="<br>";
+                    html +="<div id=>";
+                    break;
+                case "unknown":
+                    html +="<img src=\"/img/unknown.png\" />&nbsp;";
+                    html +=i.n;
+                    html +="<br>";
+                    break;
+            }
             return data;
         }
         </script>
