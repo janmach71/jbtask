@@ -1,4 +1,4 @@
-<%@ page import = "main.webapp.filemanager.*" %>
+<%@ page import = "main.filemanager.*" %>
 <%
     if (request.getParameter("dir") == null) {
         out.println("Please enter dir name.");
