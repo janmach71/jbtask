@@ -47,7 +47,7 @@
             $("#"+element_id)[0].innerHTML=html;
         }
         var generateHTML = function(data) {
-            var items = jQuery.parseJSON( jsonString );
+            var items = jQuery.parseJSON( data );
             var i;
             var html = "";
             for ( i in items ) {
