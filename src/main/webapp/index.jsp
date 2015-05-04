@@ -52,9 +52,9 @@
             //console.log(dir.dir);
             var i;
             var html = "";
-            html +="<ul class='filelist'>;
+            html +="<ul class='filelist'>";
             for ( index in dir.dir ) {
-                html +="<li class='filelistitem'>;
+                html +="<li class='filelistitem'>";
                 var i = dir.dir[index].i;
                 //console.log(i);
                 encoded = encodeURIComponent(i.n).replace("%","X");
@@ -89,9 +89,9 @@
                     html +="<br>";
                     break;
                 }
-                html +="</li>;
+                html +="</li>";
             }
-            html +="</ul>;
+            html +="</ul>";
             return html;
         }
         </script>
@@ -109,6 +109,11 @@
                 opacity:.8;
                 z-index: 9999;
                 background: url(/img/ajax-loader-good.gif) center no-repeat #fff;
+            }
+
+            ul .filelist
+            {
+                list-style-type: none;
             }
         </style>
 
