@@ -1,7 +1,8 @@
 package main.java.filemanager;
 
 import java.io.File;
-import javax.servlet.jsp.JspWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +22,13 @@ public class FileManager {
         }
         return list;
     }
-    public static void getDirJson(JspWriter out, String dir) {
+    public static void getDirJson(Writer out, String dir) throws IOException{
         //keep in list, so we can sort on arbitrary property
         List<DirItem> list = getDir(dir);
-        out.println("Ahoj 1" );
+        out.write("Ahoj 1");
         for (DirItem item : list) {
-            out.println(item.getName() + "<br>");
+            out.write(item.getName() + "<br>");
         }
-        out.println( "Ahoj 2" );
+        out.write( "Ahoj 2" );
     }
 }
