@@ -57,7 +57,7 @@
                 html +="<li class='filelistitem'>";
                 var i = dir.dir[index].i;
                 //console.log(i);
-                encoded = encodeURIComponent(i.n).split("%").join("X");
+                encoded = encodeURIComponent(i.n).split("%").join("X").split("%").join("Y");
                 console.log(encoded);
                 switch(i.t) {
                 case "image":
