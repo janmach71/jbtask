@@ -1,4 +1,4 @@
-package main.webapp.filemanager;
+package main.java.filemanager;
 
 import java.io.File;
 import java.net.URLConnection;
