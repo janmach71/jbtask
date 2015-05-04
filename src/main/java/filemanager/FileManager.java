@@ -1,7 +1,7 @@
 package main.java.filemanager;
 
 import java.io.File;
-import java.io.PrintStream;
+import javax.servlet.jsp.JspWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +21,10 @@ public class FileManager {
         }
         return list;
     }
-    public static void getDirJson(PrintStream out, String dir) {
+    public static void getDirJson(JspWriter out, String dir) {
+        //keep in list, so we can sort on arbitrary property
         List<DirItem> list = getDir(dir);
-        out.println( "Ahoj 1" );
+        out.println("Ahoj 1" );
         for (DirItem item : list) {
             out.println(item.getName() + "<br>");
         }
