@@ -71,7 +71,7 @@
     <body>
         <h1>File Manager</h1>
         <p>The context path is: ${pageContext.request.contextPath}.</p>
-        <div class="root"></div>
+        <div id="root"></div>
         <div class="ajax-loader"></div>
     </body>
 </html>
