@@ -52,7 +52,8 @@
             //console.log(dir.dir);
             var i;
             var html = "";
-            for ( i in dir.dir ) {
+            for ( index in dir.dir ) {
+                var i = dir.dir[index];
                 console.log(i);
                 switch(i.t) {
                 case "image":
