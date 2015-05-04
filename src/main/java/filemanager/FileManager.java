@@ -29,15 +29,15 @@ public class FileManager {
         out.write("{\"dir\" : [\n");
         for (DirItem item : list) {
             out.write(col);
-            out.write("{\"i\" : {\n");
+            out.write("{\"i\" : {");
             out.write("\"n\" : \"");
             out.write(item.getName());
-            out.write("\",\n");
+            out.write("\",");
             out.write("\"t\" : \"");
             out.write(item.getType().toString());
             out.write("\"}}");
-            col=",";
+            col=",\n";
         }
-        out.write( "]}" );
+        out.write( "\n]}" );
     }
 }

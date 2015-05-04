@@ -49,6 +49,7 @@
         var generateHTML = function(data) {
             console.log(data);
             var items = jQuery.parseJSON( data );
+            console.log(items);
             var i;
             var html = "";
             for ( i in items ) {
