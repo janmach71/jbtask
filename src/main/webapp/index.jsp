@@ -52,7 +52,9 @@
             //console.log(dir.dir);
             var i;
             var html = "";
+            html +="<ul class='filelist'>;
             for ( index in dir.dir ) {
+                html +="<li class='filelistitem'>;
                 var i = dir.dir[index].i;
                 //console.log(i);
                 encoded = encodeURIComponent(i.n).replace("%","X");
@@ -80,13 +82,16 @@
                     html +="<br>";
                     html +="<div id=\""+encoded+"\"></div>";
                     break;
+                default:
                 case "unknown":
                     html +="<img src=\"/img/unknown.png\" />&nbsp;";
                     html +=i.n;
                     html +="<br>";
                     break;
                 }
+                html +="</li>;
             }
+            html +="</ul>;
             return html;
         }
         </script>
