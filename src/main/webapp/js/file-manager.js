@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    loadStoredFolders("/","root");
+    loadStoredFolders("/","X2F");
 });
 
 var loadFolder = function(path,element_id) {
