@@ -28,24 +28,24 @@ Storage.prototype.getObj = function(key) {
 
 Storage.prototype.initStoredFolders = function() {
     if (! this.getObj("openedFolders") ) {
-        this.setObj("openedFolders", new Array());
+        this.setObj("openedFolders", {});
     }
     if (! this.getObj("orderOfOpenedFolders") ) {
-        this.setObj("orderOfOpenedFolders", new Array());
+        this.setObj("orderOfOpenedFolders", []);
     }
 }
 
 Storage.prototype.associateStoredFolders = function(path,element_id) {
     this.initStoredFolders();
-    var arr = this.getObj("openedFolders");
-    arr[element_id]  = path;
-    this.setObj("openedFolders",arr);
+    var obj = this.getObj("openedFolders");
+    obj[element_id]  = path;
+    this.setObj("openedFolders",obj);
 }
 
 Storage.prototype.addToOrderOfOpenedFolders = function(element_id) {
     this.initStoredFolders();
     var arr = this.getObj("orderOfOpenedFolders");
-    arr[element_id]  = path;
+    arr.push(element_id);
     this.setObj("orderOfOpenedFolders",arr);
 }
 
@@ -70,7 +70,6 @@ Storage.prototype.getOpenedFolders = function() {
     var arr = this.getObj("openedFolders");
     return arr;
 }
-
 
 
 var displayFolderContent = function(data,element_id) {
