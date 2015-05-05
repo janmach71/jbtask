@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 var loadFolder = function(path,element_id) {
-        var url = "http://env-6068157.unicloud.pl/api/v1/api.jsp?dir=" + encodeURIComponent(path);
+        var url = "/api/v1/api.jsp?dir=" + encodeURIComponent(path);
         $.ajax({
             url: url,
             cache: false,
@@ -20,17 +20,17 @@ var loadFolder = function(path,element_id) {
 }
 
 Storage.prototype.setObj = function(key, obj) {
-    return this.setItem(key, JSON.stringify(obj))
+    return this.setItem(key, JSON.stringify(obj));
 }
 Storage.prototype.getObj = function(key) {
-    return JSON.parse(this.getItem(key))
+    return JSON.parse(this.getItem(key));
 }
 
 Storage.prototype.initStoredFolders = function() {
-    if (typeof this.getObj("openedFolders") === "undefined") {
+    if (! this.getObj("openedFolders") ) {
         this.setObj("openedFolders", new Array());
     }
-    if (typeof this.getObj("orderOfOpenedFolders") === "undefined") {
+    if (! this.getObj("orderOfOpenedFolders") ) {
         this.setObj("orderOfOpenedFolders", new Array());
     }
 }
