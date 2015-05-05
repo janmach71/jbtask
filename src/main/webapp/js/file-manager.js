@@ -1,3 +1,6 @@
+
+var storedFoldersToOpen ;
+
 $(document).ready(function () {
     loadStoredFolders("/","X2F");
 });
@@ -78,6 +81,7 @@ var displayFolderContent = function(data,element_id) {
     html = $("#ima_"+element_id+"_ge")[0].innerHTML;
     html = html.replace(".png\"","_o.png\"");
     $("#ima_"+element_id+"_ge")[0].innerHTML = html;
+    loadStoredFoldersOneByOne();
 }
 
 var closeStoredFolder = function(element_id) {
@@ -125,10 +129,21 @@ var loadStoredFolders = function(root,element_id) {
         openFolder(root,element_id);
         return;
     }
-    var folders = localStorage.getOpenedFolders();
+    storedFoldersToOpen = [];
     for (var i in orders) {
         var el_id = orders[i];
         var path = folders[el_id];
+        storedFoldersToOpen.push(el_id);
+    }
+    loadStoredFoldersOneByOne();
+}
+
+var loadStoredFoldersOneByOne = function() {
+    if (storedFoldersToOpen.length) {
+        var folders = localStorage.getOpenedFolders();
+        var el_id = storedFoldersToOpen[0];
+        var path = folders[el_id];
+        storedFoldersToOpen.shift();
         openFolder(path,el_id);
     }
 }
