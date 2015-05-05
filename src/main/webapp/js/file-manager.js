@@ -80,13 +80,28 @@ var displayFolderContent = function(data,element_id) {
     $("#ima_"+element_id+"_ge")[0].innerHTML = html;
 }
 
-var closeFolder = function(element_id) {
-    $("#"+element_id)[0].innerHTML="";
+var closeStoredFolder(element_id) {
     localStorage.associateStoredFolders(undefined,element_id);
     localStorage.removeFromOrderOfOpenedFolders(element_id);
+    var orders = localStorage.getOrderOfOpenedFolders();
+    var i = 0;
+    while ( i <  orders.length ) {
+        var el_id = orders[i];
+        var path = folders[el_id];
+        if (el_id.indexOf(element_id+"X2F") == 0 ) {
+            closeStoredFolder(el_id);
+        } else {
+            i++;
+        }
+    }
+}
+
+var closeFolder = function(element_id) {
+    $("#"+element_id)[0].innerHTML="";
     html = $("#ima_"+element_id+"_ge")[0].innerHTML;
     html = html.replace("_o.png\"",".png\"");
     $("#ima_"+element_id+"_ge")[0].innerHTML = html;
+    closeStoredFolder(element_id);
 }
 
 var openFolder = function(path,element_id) {
