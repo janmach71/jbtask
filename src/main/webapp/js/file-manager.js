@@ -169,13 +169,15 @@ var generateHTML = function(data) {
             html +=i.n;
             break;
         case "archive":
+            html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">"
             html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/archive.png\"/>&nbsp;";
-            html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">" + i.n +"</a></div>";
+            html +=i.n +"</div></a>";
             html +="<div id=\""+element_id+"\"></div>";
             break;
         case "folder":
+            html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">"
             html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/folder.png\"/>&nbsp;";
-            html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">" + i.n +"</a></div>";
+            html +=i.n +"</div></a>";
             html +="<div id=\""+element_id+"\"></div>";
             break;
         default:
