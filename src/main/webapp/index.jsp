@@ -21,7 +21,7 @@
     <body>
         <h1>File Manager</h1>
         <!-- <p>The context path is: ${pageContext.request.contextPath}.</p> -->
-        <a onclick="toggleFolder('/','X2F')"><div id="ima_X2F_ge"><img src="/img/folder.png"/>&nbsp;/</div></a>
+        <a onclick="tf('/','X2F')"><div id="ima_X2F_ge"><img src="/img/folder.png"/>&nbsp;/</div></a>
         <div id="X2F"></div>
         <div class="ajax-loader"></div>
     </body>

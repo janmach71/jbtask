@@ -147,7 +147,7 @@ var loadStoredFoldersOneByOne = function() {
     }
 }
 
-var toggleFolder = function(path,element_id) {
+var tf = function(path,element_id) {
     if ( isFolderOpened(element_id)) {
         closeFolder(element_id);
     } else {
@@ -162,9 +162,9 @@ var generateHTML = function(data) {
     //console.log(dir.dir);
     var i;
     var html = "";
-    html +="<ul class='filelist'>";
+    html +="<ul class='fl'>";
     for ( index in dir.dir ) {
-        html +="<li class='filelistitem'>";
+        html +="<li>";
         var i = dir.dir[index].i;
         //console.log(i);
         var element_id = encodeURIComponent(i.n);
@@ -183,13 +183,13 @@ var generateHTML = function(data) {
             html +=i.n;
             break;
         case "archive":
-            html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">"
+            html +="<a onclick=\"tf('"+i.n+"','"+element_id+"')\">"
             html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/archive.png\"/>&nbsp;";
             html +=i.n +"</div></a>";
             html +="<div id=\""+element_id+"\"></div>";
             break;
         case "folder":
-            html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">"
+            html +="<a onclick=\"tf('"+i.n+"','"+element_id+"')\">"
             html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/folder.png\"/>&nbsp;";
             html +=i.n +"</div></a>";
             html +="<div id=\""+element_id+"\"></div>";
