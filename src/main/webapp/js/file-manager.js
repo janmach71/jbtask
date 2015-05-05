@@ -39,10 +39,10 @@ var closeFolder = function(element_id) {
 }
 
 var initStoredFolders = function() {
-    if (typeof (localStorage.openedFolders) === "undefined") {
+    if (typeof localStorage.openedFolders === "undefined") {
         localStorage.openedFolders = new Array();
     }
-    if (typeof (localStorage.orderOfOpenedFolders) === "undefined") {
+    if (typeof localStorage.orderOfOpenedFolders === "undefined") {
         localStorage.orderOfOpenedFolders = new Array();
     }
 }
@@ -57,13 +57,13 @@ var openFolder = function(path,element_id) {
 
 var isFolderOpened = function(element_id) {
     initStoredFolders();
-    if (typeof (localStorage.openedFolders[element_id]) === "undefined") {
+    if (typeof localStorage.openedFolders[element_id] === "undefined") {
         return false;
     }
     return true;
 }
 
-function loadStoredFolders (root,element_id) {
+var loadStoredFolders = function(root,element_id) {
     initStoredFolders();
     if ( localStorage.orderOfOpenedFolders.length ) {
         openFolder(root,element_id);
@@ -96,7 +96,7 @@ var generateHTML = function(data) {
         var i = dir.dir[index].i;
         //console.log(i);
         var element_id = encodeURIComponent(i.n).split("%").join("X").split("-").join("Y").split("+").join("Z");
-        console.log(encoded);
+        //console.log(element_id);
         switch(i.t) {
         case "image":
             html +="<img src=\"/img/image.png\" />&nbsp;";
