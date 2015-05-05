@@ -36,9 +36,11 @@ public class UploadServlet extends HttpServlet {
         // gets absolute path of the web application
         String appPath = request.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
-        String savePath = appPath + File.separator + SAVE_DIR;
+        //String savePath = appPath /* + File.separator + SAVE_DIR */ ;
 
-        // creates the save directory if it does not exists
+        String savePath = "/tmp/uploadFiles";
+
+                // creates the save directory if it does not exists
         File fileSaveDir = new File(savePath);
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdir();
