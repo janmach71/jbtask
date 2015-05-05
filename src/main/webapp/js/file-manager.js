@@ -80,7 +80,7 @@ var displayFolderContent = function(data,element_id) {
     $("#ima_"+element_id+"_ge")[0].innerHTML = html;
 }
 
-var closeStoredFolder(element_id) {
+var closeStoredFolder = function(element_id) {
     localStorage.associateStoredFolders(undefined,element_id);
     localStorage.removeFromOrderOfOpenedFolders(element_id);
     var orders = localStorage.getOrderOfOpenedFolders();
