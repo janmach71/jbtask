@@ -75,6 +75,9 @@ Storage.prototype.getOpenedFolders = function() {
 var displayFolderContent = function(data,element_id) {
     html = generateHTML(data);
     $("#"+element_id)[0].innerHTML=html;
+    html = $("#ima_"+element_id+"_ge")[0].innerHTML;
+    html = html.replace(".png\"","_o.png\"");
+    $("#ima_"+element_id+"_ge")[0].innerHTML = html;
 }
 
 var closeFolder = function(element_id) {
@@ -91,9 +94,6 @@ var openFolder = function(path,element_id) {
     localStorage.removeFromOrderOfOpenedFolders(element_id);
     localStorage.addToOrderOfOpenedFolders(element_id);
     loadFolder(path,element_id);
-    html = $("#ima_"+element_id+"_ge")[0].innerHTML;
-    html = html.replace(".png\"","_o.png\"");
-    $("#ima_"+element_id+"_ge")[0].innerHTML = html;
 }
 
 var isFolderOpened = function(element_id) {
