@@ -7,9 +7,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>File Manager</title>
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="//js/ajax-loader.js"></script>
+        <script src="/js/ajax-loader.js"></script>
         <link rel="stylesheet" href="/styles/ajax-loader.css">
-        <script src="//js/file-manager.js"></script>
+        <script src="/js/file-manager.js"></script>
         <link rel="stylesheet" href="/styles/file-manager.css">
 
         <script type="text/javascript">
