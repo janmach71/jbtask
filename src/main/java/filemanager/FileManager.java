@@ -54,7 +54,7 @@ public class FileManager {
         }
         return list;
     }
-    public static void getJsonDir(Writer out, String dir) throws Exception{
+    public static void getDirJson(Writer out, String dir) throws Exception{
         String[] array = dir.split("[\\\\/]",-1) ;
         String name="";
         for (int i=0 ;i<array.length;i++) {
