@@ -65,7 +65,7 @@ var isFolderOpened = function(element_id) {
 
 var loadStoredFolders = function(root,element_id) {
     initStoredFolders();
-    if ( localStorage.orderOfOpenedFolders.length ) {
+    if ( !localStorage.orderOfOpenedFolders.length ) {
         openFolder(root,element_id);
         return;
     }
