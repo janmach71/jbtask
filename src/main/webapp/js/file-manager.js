@@ -54,7 +54,7 @@ Storage.prototype.removeFromOrderOfOpenedFolders = function (element_id) {
     var arr = this.getObj("orderOfOpenedFolders");
     var i = arr.indexOf(element_id);
     if (i > -1 ) {
-        arr=arr.splice(i,1);
+        arr.splice(i,1);
     }
     this.setObj("orderOfOpenedFolders",arr);
 }
