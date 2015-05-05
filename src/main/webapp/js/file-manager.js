@@ -132,7 +132,11 @@ var generateHTML = function(data) {
         html +="<li class='filelistitem'>";
         var i = dir.dir[index].i;
         //console.log(i);
-        var element_id = encodeURIComponent(i.n).split("%").join("X").split("-").join("Y").split("+").join("Z");
+        var element_id = encodeURIComponent(i.n);
+        element_id = element_id.split("%").join("X");
+        element_id = element_id.split("#").join("X");
+        element_id = element_id.split(".").join("X");
+        element_id = element_id.split("-").join("X");
         //console.log(element_id);
         switch(i.t) {
         case "image":
