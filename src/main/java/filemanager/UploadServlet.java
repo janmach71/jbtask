@@ -50,7 +50,7 @@ public class UploadServlet extends HttpServlet {
         }
 
         request.setAttribute("message", "Upload has been done successfully into " + savePath + " !");
-        getServletContext().getRequestDispatcher("/message.jsp").forward(
+        getServletContext().getRequestDispatcher("/api/v1/message.jsp").forward(
                 request, response);
     }
 
