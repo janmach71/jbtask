@@ -150,13 +150,21 @@ var generateHTML = function(data) {
             html +="<br>";
             break;
         case "archive":
-            html +="<img src=\"/img/archive.png\" />&nbsp;";
+            if (isFolderOpened(element_id)) {
+                html +="<img src=\"/img/archive_o.png\" />&nbsp;";
+            } else {
+                html +="<img src=\"/img/archive.png\" />&nbsp;";
+            }
             html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">" + i.n +"</a>";
             html +="<br>";
             html +="<div id=\""+element_id+"\"></div>";
             break;
         case "folder":
-            html +="<img src=\"/img/folder.png\" />&nbsp;";
+            if (isFolderOpened(element_id)) {
+                html +="<img src=\"/img/folder_o.png\" />&nbsp;";
+            } else {
+                html +="<img src=\"/img/folder.png\" />&nbsp;";
+            }
             html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">" + i.n +"</a>";
             html +="<br>";
             html +="<div id=\""+element_id+"\"></div>";
