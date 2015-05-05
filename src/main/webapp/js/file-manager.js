@@ -14,7 +14,13 @@ var loadFolder = function(path,element_id) {
             processData: false,
             type: "GET",
             success: function(data) {
-              displayFolderContent(data,element_id);
+                try {
+                    displayFolderContent(data,element_id);
+                }
+                catch(e)
+                {
+                    alert(data);
+                }
             },
             error: function () {
               alert("Error loading folder content..." );

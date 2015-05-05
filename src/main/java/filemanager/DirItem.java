@@ -23,11 +23,15 @@ public class DirItem {
         types.put("image/",Type.image);
         types.put("text/",Type.text);
         types.put("application/zip",Type.archive);
+        types.put("application/rar",Type.archive);
     }
     protected Type determineType(File file) {
         if (file.isDirectory()) {
             return Type.folder;
         }
+        return determineType(name);
+    }
+    protected Type determineType(String name) {
         String mimeType = URLConnection.guessContentTypeFromName(name);
         if (mimeType != null) {
             int i = mimeType.indexOf('/');
@@ -53,5 +57,13 @@ public class DirItem {
     DirItem(File file) {
         this.name = file.getAbsolutePath();
         this.type=determineType(file);
+    }
+    DirItem(String name,boolean dir) {
+        this.name = name;
+        if (dir) {
+            this.type = Type.folder;
+        } else {
+            this.type = determineType(name);
+        }
     }
 }

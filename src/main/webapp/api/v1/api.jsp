@@ -3,6 +3,12 @@
     if (request.getParameter("dir") == null) {
         out.println("Please enter dir name.");
     } else {
-        FileManager.getDirJson(out,request.getParameter("dir"));
+        try {
+            FileManager.getDirJson(out,request.getParameter("dir"));
+        }
+        catch (Exception e)
+        {
+            out.println(e.getMessage());
+        }
     }
 %>
