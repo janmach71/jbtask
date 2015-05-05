@@ -82,7 +82,7 @@ var closeFolder = function(element_id) {
     localStorage.associateStoredFolders(undefined,element_id);
     localStorage.removeFromOrderOfOpenedFolders(element_id);
     html = $("#ima_"+element_id+"_ge")[0].innerHTML;
-    html = html.replace("_o.png\"/>",".png\"/>");
+    html = html.replace("_o.png\"",".png\"");
     $("#ima_"+element_id+"_ge")[0].innerHTML = html;
 }
 
@@ -92,7 +92,7 @@ var openFolder = function(path,element_id) {
     localStorage.addToOrderOfOpenedFolders(element_id);
     loadFolder(path,element_id);
     html = $("#ima_"+element_id+"_ge")[0].innerHTML;
-    html = html.replace(".png\"/>","_o.png\"/>");
+    html = html.replace(".png\"","_o.png\"");
     $("#ima_"+element_id+"_ge")[0].innerHTML = html;
 }
 

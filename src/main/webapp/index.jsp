@@ -23,7 +23,6 @@
         <!-- <p>The context path is: ${pageContext.request.contextPath}.</p> -->
         <div id="ima_root_ge"><img src="/img/folder.png"/>&nbsp;
         <a onclick="toggleFolder('/','root')">/</a></div>
-        <br>
         <div id="root"></div>
         <div class="ajax-loader"></div>
     </body>
