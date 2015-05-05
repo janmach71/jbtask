@@ -89,6 +89,7 @@ var closeStoredFolder = function(element_id) {
         var el_id = orders[i];
         if (el_id.indexOf(element_id+"X2F") == 0 ) {
             closeStoredFolder(el_id);
+            orders = localStorage.getOrderOfOpenedFolders();
         } else {
             i++;
         }
