@@ -19,59 +19,96 @@ var loadFolder = function(path,element_id) {
         });
 }
 
+Storage.prototype.setObj = function(key, obj) {
+    return this.setItem(key, JSON.stringify(obj))
+}
+Storage.prototype.getObj = function(key) {
+    return JSON.parse(this.getItem(key))
+}
+
+Storage.prototype.initStoredFolders = function() {
+    if (typeof this.getObj("openedFolders") === "undefined") {
+        this.setObj("openedFolders", new Array());
+    }
+    if (typeof this.getObj("orderOfOpenedFolders") === "undefined") {
+        this.setObj("orderOfOpenedFolders", new Array());
+    }
+}
+
+Storage.prototype.associateStoredFolders = function(path,element_id) {
+    this.initStoredFolders();
+    var arr = this.getObj("openedFolders");
+    arr[element_id]  = path;
+    this.setObj("openedFolders",arr);
+}
+
+Storage.prototype.addToOrderOfOpenedFolders = function(element_id) {
+    this.initStoredFolders();
+    var arr = this.getObj("orderOfOpenedFolders");
+    arr[element_id]  = path;
+    this.setObj("orderOfOpenedFolders",arr);
+}
+
+Storage.prototype.removeFromOrderOfOpenedFolders = function (element_id) {
+    this.initStoredFolders();
+    var arr = this.getObj("orderOfOpenedFolders");
+    var i = arr.indexOf(element_id);
+    if (i > -1 ) {
+        arr=arr.splice(i,1);
+    }
+    this.setObj("orderOfOpenedFolders",arr);
+}
+
+Storage.prototype.getOrderOfOpenedFolders = function() {
+    this.initStoredFolders();
+    var arr = this.getObj("orderOfOpenedFolders");
+    return arr;
+}
+
+Storage.prototype.getOpenedFolders = function() {
+    this.initStoredFolders();
+    var arr = this.getObj("openedFolders");
+    return arr;
+}
+
+
+
 var displayFolderContent = function(data,element_id) {
     html = generateHTML(data);
     $("#"+element_id)[0].innerHTML=html;
 }
 
-var removeFromOrderOfOpenedFolders = function (element_id) {
-    var i = localStorage.orderOfOpenedFolders.indexOf(element_id);
-    if (i > -1 ) {
-        localStorage.orderOfOpenedFolders=splice(i,1);
-    }
-}
-
 var closeFolder = function(element_id) {
     $("#"+element_id)[0].innerHTML="";
-    initStoredFolders();
-    localStorage.openedFolders[element_id]=undefined;
-    removeFromOrderOfOpenedFolders(element_id);
-}
-
-var initStoredFolders = function() {
-    if (typeof localStorage.openedFolders === "undefined") {
-        localStorage.openedFolders = new Array();
-    }
-    if (typeof localStorage.orderOfOpenedFolders === "undefined") {
-        localStorage.orderOfOpenedFolders = new Array();
-    }
+    localStorage.associateStoredFolders(path,undefined);
+    localStorage.removeFromOrderOfOpenedFolders(element_id);
 }
 
 var openFolder = function(path,element_id) {
-    initStoredFolders();
-    localStorage.openedFolders[element_id]=path;
-    removeFromOrderOfOpenedFolders(element_id);
-    localStorage.orderOfOpenedFolders.push(element_id);
+    localStorage.associateStoredFolders(path,element_id);
+    localStorage.removeFromOrderOfOpenedFolders(element_id);
+    localStorage.addToOrderOfOpenedFolders(element_id);
     loadFolder(path,element_id);
 }
 
 var isFolderOpened = function(element_id) {
-    initStoredFolders();
-    if (typeof localStorage.openedFolders[element_id] === "undefined") {
+    var folders=localStorage.getOpenedFolders();
+    if (typeof folders[element_id] === "undefined") {
         return false;
     }
     return true;
 }
 
 var loadStoredFolders = function(root,element_id) {
-    initStoredFolders();
-    if ( !localStorage.orderOfOpenedFolders.length ) {
+    var orders = localStorage.getOrderOfOpenedFolders();
+    if ( !orders.length ) {
         openFolder(root,element_id);
         return;
     }
-    for (var i in localStorage.orderOfOpenedFolders) {
-        var el_id = localStorage.orderOfOpenedFolders[i];
-        var path = localStorage.openedFolders[el_id];
+    var folders = localStorage.getOpenedFolders();
+    for (var i in orders) {
+        var el_id = orders[i];
+        var path = folders[el_id];
         openFolder(path,el_id);
     }
 }
@@ -86,7 +123,8 @@ var toggleFolder = function(path,element_id) {
 
 var generateHTML = function(data) {
     //console.log(data);
-    var dir = jQuery.parseJSON( data );
+    //var dir = jQuery.parseJSON( data );
+    var dir = JSON.parse(data);
     //console.log(dir.dir);
     var i;
     var html = "";
