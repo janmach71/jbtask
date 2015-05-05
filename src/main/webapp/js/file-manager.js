@@ -79,7 +79,7 @@ var displayFolderContent = function(data,element_id) {
 
 var closeFolder = function(element_id) {
     $("#"+element_id)[0].innerHTML="";
-    localStorage.associateStoredFolders(path,undefined);
+    localStorage.associateStoredFolders(undefined,element_id);
     localStorage.removeFromOrderOfOpenedFolders(element_id);
 }
 
