@@ -87,7 +87,6 @@ var closeStoredFolder = function(element_id) {
     var i = 0;
     while ( i <  orders.length ) {
         var el_id = orders[i];
-        var path = folders[el_id];
         if (el_id.indexOf(element_id+"X2F") == 0 ) {
             closeStoredFolder(el_id);
         } else {
