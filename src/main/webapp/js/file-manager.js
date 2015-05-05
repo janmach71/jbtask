@@ -1,5 +1,5 @@
 
-var storedFoldersToOpen ;
+var storedFoldersToOpen = [];
 
 $(document).ready(function () {
     loadStoredFolders("/","X2F");
@@ -132,7 +132,6 @@ var loadStoredFolders = function(root,element_id) {
     storedFoldersToOpen = [];
     for (var i in orders) {
         var el_id = orders[i];
-        var path = folders[el_id];
         storedFoldersToOpen.push(el_id);
     }
     loadStoredFoldersOneByOne();
