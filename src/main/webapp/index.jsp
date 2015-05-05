@@ -6,115 +6,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>File Manager</title>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="//js/ajax-loader.js"></script>
+        <link rel="stylesheet" href="/styles/ajax-loader.css">
+        <script src="//js/file-manager.js"></script>
+        <link rel="stylesheet" href="/styles/file-manager.css">
 
         <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).ajaxStart(function () {
-                //console.log("add");
-                $(".ajax-loader").fadeIn("slow")
-                $(".ajax-loader-background").fadeIn("slow")
-                $(".ajax-loader-foreground").fadeIn("slow")
-            });
-            $(document).ajaxStop(function () {
-                //console.log("remove");
-                $(".ajax-loader").fadeOut("slow")
-                $(".ajax-loader-background").fadeOut("slow")
-                $(".ajax-loader-foreground").fadeOut("slow")
-            });
-        	loadFolder("/","root");
-        });
-        var loadFolder = function(path,element_id) {
-                var url = "http://env-6068157.unicloud.pl/api/v1/api.jsp?dir=" + encodeURIComponent(path);
-                $.ajax({
-                    url: url,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    type: "GET",
-                    success: function(data) {
-                      displayFolderContent(data,element_id);
-                    },
-                    error: function () {
-                      alert("Error loading folder content..." );
-                    }
-                });
-        }
-        var displayFolderContent = function(data,element_id) {
-            html = generateHTML(data);
-            $("#"+element_id)[0].innerHTML=html;
-        }
-        var generateHTML = function(data) {
-            //console.log(data);
-            var dir = jQuery.parseJSON( data );
-            //console.log(dir.dir);
-            var i;
-            var html = "";
-            html +="<ul class='filelist'>";
-            for ( index in dir.dir ) {
-                html +="<li class='filelistitem'>";
-                var i = dir.dir[index].i;
-                //console.log(i);
-                encoded = encodeURIComponent(i.n).split("%").join("X").split("%").join("Y");
-                console.log(encoded);
-                switch(i.t) {
-                case "image":
-                    html +="<img src=\"/img/image.png\" />&nbsp;";
-                    html +=i.n;
-                    html +="<br>";
-                    break;
-                case "text":
-                    html +="<img src=\"/img/text.png\" />&nbsp;";
-                    html +=i.n;
-                    html +="<br>";
-                    break;
-                case "archive":
-                    html +="<img src=\"/img/archive.png\" />&nbsp;";
-                    html +="<a onclick=\"loadFolder('"+i.n+"','"+encoded+"')\">" + i.n +"</a>";
-                    html +="<br>";
-                    html +="<div id=\""+encoded+"\"></div>";
-                    break;
-                case "folder":
-                    html +="<img src=\"/img/folder.png\" />&nbsp;";
-                    html +="<a onclick=\"loadFolder('"+i.n+"','"+encoded+"')\">" + i.n +"</a>";
-                    html +="<br>";
-                    html +="<div id=\""+encoded+"\"></div>";
-                    break;
-                default:
-                case "unknown":
-                    html +="<img src=\"/img/unknown.png\" />&nbsp;";
-                    html +=i.n;
-                    html +="<br>";
-                    break;
-                }
-                html +="</li>";
-            }
-            html +="</ul>";
-            return html;
-        }
         </script>
         <style>
-            .ajax-loader {
-                display: none;
-                position: fixed;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                z-index: 9990;
-                background-color:gray;
-                filter:alpha(opacity=80);
-                opacity:.8;
-                z-index: 9999;
-                background: url(/img/ajax-loader-good.gif) center no-repeat #fff;
-            }
-
-            .filelist
-            {
-                list-style-type: none;
-            }
         </style>
 
     </head>
