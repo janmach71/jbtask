@@ -24,7 +24,7 @@ var displayFolderContent = function(data,element_id) {
     $("#"+element_id)[0].innerHTML=html;
 }
 
-var removeFromOrderOfOpenedFolders(element_id) {
+var removeFromOrderOfOpenedFolders = function (element_id) {
     var i = localStorage.orderOfOpenedFolders.indexOf(element_id);
     if (i > -1 ) {
         localStorage.orderOfOpenedFolders=splice(i,1);
