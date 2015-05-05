@@ -81,6 +81,9 @@ var closeFolder = function(element_id) {
     $("#"+element_id)[0].innerHTML="";
     localStorage.associateStoredFolders(undefined,element_id);
     localStorage.removeFromOrderOfOpenedFolders(element_id);
+    html = $("#ima_"+element_id+"_ge")[0].innerHTML;
+    html = html.replace("_o.png",".png");
+    $("#ima_"+element_id+"_ge")[0].innerHTML = html;
 }
 
 var openFolder = function(path,element_id) {
@@ -88,6 +91,9 @@ var openFolder = function(path,element_id) {
     localStorage.removeFromOrderOfOpenedFolders(element_id);
     localStorage.addToOrderOfOpenedFolders(element_id);
     loadFolder(path,element_id);
+    html = $("#ima_"+element_id+"_ge")[0].innerHTML;
+    html = html.replace(".png","_o.png");
+    $("#ima_"+element_id+"_ge")[0].innerHTML = html;
 }
 
 var isFolderOpened = function(element_id) {
@@ -150,21 +156,13 @@ var generateHTML = function(data) {
             html +="<br>";
             break;
         case "archive":
-            if (isFolderOpened(element_id)) {
-                html +="<img src=\"/img/archive_o.png\" />&nbsp;";
-            } else {
-                html +="<img src=\"/img/archive.png\" />&nbsp;";
-            }
+            html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/archive.png\" /></div>&nbsp;";
             html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">" + i.n +"</a>";
             html +="<br>";
             html +="<div id=\""+element_id+"\"></div>";
             break;
         case "folder":
-            if (isFolderOpened(element_id)) {
-                html +="<img src=\"/img/folder_o.png\" />&nbsp;";
-            } else {
-                html +="<img src=\"/img/folder.png\" />&nbsp;";
-            }
+            html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/folder.png\" /></div>&nbsp;";
             html +="<a onclick=\"toggleFolder('"+i.n+"','"+element_id+"')\">" + i.n +"</a>";
             html +="<br>";
             html +="<div id=\""+element_id+"\"></div>";
