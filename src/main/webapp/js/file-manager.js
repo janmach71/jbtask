@@ -19,7 +19,11 @@ var loadFolder = function(path,element_id) {
                 }
                 catch(e)
                 {
-                    alert(data);
+                    if (data) {
+                        alert(data);
+                    } else {
+                        alert("Empty data...");
+                    }
                 }
             },
             error: function () {
@@ -172,6 +176,17 @@ var generateHTML = function(data) {
     for ( index in dir.dir ) {
         html +="<li>";
         var i = dir.dir[index].i;
+        var name ;
+        if ( i.n=="/") {
+            name = i.n;
+        } else {
+            var splits = i.n.split("/");
+            if (splits.length) {
+                name = splits[splits.length-1];
+            } else {
+                name = i.n;
+            }
+        }
         //console.log(i);
         var element_id = encodeURIComponent(i.n);
         element_id = element_id.split("%").join("X");

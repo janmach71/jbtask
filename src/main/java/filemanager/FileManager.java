@@ -29,8 +29,6 @@ public class FileManager {
     }
     protected static boolean isInDirectory(String name,String dir) {
         String[] na = name.split("[\\\\/]",-1) ;
-        String[] da = dir.split("[\\\\/]",-1) ;
-
         if ( (dir == null || dir.isEmpty()))  {
             if (na.length == 0) {
                 return true;
@@ -43,6 +41,7 @@ public class FileManager {
         if (na.length == 0) {
             return false;
         }
+        String[] da = dir.split("[\\\\/]",-1) ;
         if (na[na.length-1].isEmpty()) {
             String n = "";
             for (int i=0; i<na.length - 2; i++) {
