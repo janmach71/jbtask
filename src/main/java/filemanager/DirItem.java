@@ -20,18 +20,28 @@ public class DirItem {
     Type type;
     private static Map<String,Type> types = new HashMap<String, Type>();
     static {
-        types.put("image/",Type.image);
-        types.put("text/",Type.text);
+        types.put("image",Type.image);
+        types.put("text",Type.text);
         types.put("application/zip",Type.archive);
-        types.put("application/rar",Type.archive);
+        types.put("application/x-rar-compressed",Type.archive);
+        types.put("application/x-7z-compressed",Type.archive);
+        types.put("application/x-ace-compressed",Type.archive);
+        types.put("application/vnd.ms-cab-compressed",Type.archive);
+        types.put("arj",Type.archive);
+        types.put("rar",Type.archive);
+        types.put("7z",Type.archive);
+        types.put("gz",Type.archive);
+        types.put("cab",Type.archive);
     }
-    protected Type determineType(File file) {
+    public static Type determineType(File file) {
         if (file.isDirectory()) {
             return Type.folder;
         }
-        return determineType(name);
+        String extension = "";
+
+        return determineType(file.getAbsolutePath());
     }
-    protected Type determineType(String name) {
+    public static Type determineType(String name) {
         String mimeType = URLConnection.guessContentTypeFromName(name);
         if (mimeType != null) {
             int i = mimeType.indexOf('/');
@@ -46,6 +56,13 @@ public class DirItem {
                 return t;
             }
         }
+        int i = name.lastIndexOf('.');
+        if (i >= 0) {
+            Type t = types.get(name.substring(i+1));
+            if (t != null) {
+                return t;
+            }
+        }
         return Type.unknown;
     }
     String getName() {
@@ -53,6 +70,9 @@ public class DirItem {
     }
     Type getType() {
         return type;
+    }
+    void setType(Type type) {
+        this.type = type;
     }
     DirItem(File file) {
         this.name = file.getAbsolutePath();

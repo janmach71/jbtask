@@ -8,7 +8,11 @@
         }
         catch (Exception e)
         {
-            out.println(e.getMessage());
+            if (e.getMessage() == null) {
+                out.println("Unhandled exception: " + e.getClass().toString());
+            } else {
+                out.println(e.getMessage());
+            }
         }
     }
 %>
