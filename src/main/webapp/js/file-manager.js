@@ -197,28 +197,28 @@ var generateHTML = function(data) {
         switch(i.t) {
         case "image":
             html +="<img src=\"/img/image.png\"/>&nbsp;";
-            html +=i.n;
+            html +=name;
             break;
         case "text":
             html +="<img src=\"/img/text.png\"/>&nbsp;";
-            html +=i.n;
+            html +=name;
             break;
         case "archive":
             html +="<a onclick=\"tf('"+i.n+"','"+element_id+"')\">"
             html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/archive.png\"/>&nbsp;";
-            html +=i.n +"</div></a>";
+            html +=name +"</div></a>";
             html +="<div id=\""+element_id+"\"></div>";
             break;
         case "folder":
             html +="<a onclick=\"tf('"+i.n+"','"+element_id+"')\">"
             html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/folder.png\"/>&nbsp;";
-            html +=i.n +"</div></a>";
+            html +=name +"</div></a>";
             html +="<div id=\""+element_id+"\"></div>";
             break;
         default:
         case "unknown":
             html +="<img src=\"/img/unknown.png\"/>&nbsp;";
-            html +=i.n;
+            html +=name;
             break;
         }
         html +="</li>";
