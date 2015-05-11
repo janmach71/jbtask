@@ -9,7 +9,10 @@ import java.util.Map;
  * Created by mac on 03/05/15.
  */
 public class DirItem {
-    enum Type {
+    /**
+     * basic types of items of file manager list
+     */
+    public enum Type {
         image,
         text,
         archive,
@@ -18,6 +21,9 @@ public class DirItem {
     }
     String name;
     Type type;
+    /**
+     * map assigning to mine types and file extensions item types of file manager list
+     */
     private static Map<String,Type> types = new HashMap<String, Type>();
     static {
         types.put("image",Type.image);
@@ -33,6 +39,12 @@ public class DirItem {
         types.put("gz",Type.archive);
         types.put("cab",Type.archive);
     }
+
+    /**
+     *
+     * @param file file in file system
+     * @return Type of item of file manager list
+     */
     public static Type determineType(File file) {
         if (file.isDirectory()) {
             return Type.folder;
@@ -41,6 +53,12 @@ public class DirItem {
 
         return determineType(file.getAbsolutePath());
     }
+
+    /**
+     *
+     * @param name file name, might not exist in file system
+     * @return Type of item of file manager list
+     */
     public static Type determineType(String name) {
         String mimeType = URLConnection.guessContentTypeFromName(name);
         if (mimeType != null) {
@@ -65,20 +83,42 @@ public class DirItem {
         }
         return Type.unknown;
     }
-    String getName() {
+
+    /**
+     * @return name of the item
+     */
+    public String getName() {
         return name;
     }
-    Type getType() {
+    /**
+     * @return type of the item
+     */
+    public Type getType() {
         return type;
     }
-    void setType(Type type) {
+
+    /**
+     * allows to change DirItem type
+     * @param type new type of DirItem
+     */
+    public void setType(Type type) {
         this.type = type;
     }
+
+    /**
+     * constructs DirItem from file in file system
+     * @param file file in file system
+     */
     DirItem(File file) {
         this.name = file.getAbsolutePath();
         this.type=determineType(file);
     }
-    DirItem(String name,boolean dir) {
+    /**
+     * constructs DirItem from file name
+     * @param name file in file system, just name, might not exist in file system
+     * @param dir specifies if item named name is directory
+     */
+    public DirItem(String name,boolean dir) {
         this.name = name;
         if (dir) {
             this.type = Type.folder;

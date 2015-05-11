@@ -11,6 +11,12 @@ import java.util.zip.ZipInputStream;
  * Created by mac on 03/05/15.
  */
 public class FileManager {
+    /**
+     *
+     * @param dir name of directory, might not be absolute part, but pwd is not guaranteed
+     * @return list of DirItems obtained from dir directory
+     * @throws Exception
+     */
     public static List<DirItem> getDir(String dir) throws Exception{
         File folder = new File(dir);
         File[] listOfFiles = folder.listFiles();
@@ -27,7 +33,29 @@ public class FileManager {
         }
         return list;
     }
-    protected static boolean isInDirectory(String name,String dir) {
+
+    /**
+     *
+     * @param name absolute path of item to be tested, leading trailing item separators are not compulsory
+     * @param dir absolute path of containing directory, leading trailing item separators are not compulsory
+     * @return true if name is listed under dir directory - regardless folder or file, just based on path
+     */
+    public static boolean isInDirectory(String name,String dir) {
+        if (name.length() > 0 && name.charAt(name.length()-1)!='/') {
+            //name = name.substring(0,name.length()-1);
+            name += "/";
+        }
+        if (dir.length() > 0 && dir.charAt(dir.length()-1)!='/') {
+            dir += "/";
+            //dir = dir.substring(0,dir.length()-1);
+        }
+        if (name.length() > 0 && name.charAt(0)=='/') {
+            name = name.substring(1,name.length());
+        }
+        if (dir.length() > 0 && dir.charAt(0)=='/') {
+            dir = dir.substring(1,dir.length());
+        }
+
         String[] na = name.split("[\\\\/]",-1) ;
         if ( (dir == null || dir.isEmpty()))  {
             if (na.length == 0) {
@@ -61,6 +89,14 @@ public class FileManager {
         }
         return false;
     }
+
+    /**
+     * gets list of DirItems inside specified directory inside of specified zip file
+     * @param zip path to zip file
+     * @param dir absolute path inside of the zip file
+     * @return list of DirItems
+     * @throws Exception
+     */
     public static List<DirItem> getDirInZip(String zip,String dir) throws Exception{
         List<DirItem> list = new ArrayList<DirItem>();
         File zipfile = new File(zip);
@@ -87,6 +123,13 @@ public class FileManager {
         }
         return list;
     }
+
+    /**
+     * writes content of directory into output stream encoded as JSON
+     * @param out output stream
+     * @param dir name of directory, might not be absolute but pwd is not guaranteed, dir can go inside archives
+     * @throws Exception
+     */
     public static void getDirJson(Writer out, String dir) throws Exception{
         String[] array = dir.split("[\\\\/]",-1) ;
         String name="";
@@ -116,6 +159,13 @@ public class FileManager {
         }
         getJson(out,getDir(dir));
     }
+
+    /**
+     * writes list of DirItems into output stream encoded as JSON
+     * @param out output stream
+     * @param list list to be converted into json
+     * @throws Exception
+     */
     public static void getJson(Writer out, List<DirItem> list) throws Exception{
         //keep in list, so we can sort on arbitrary property
         String col="";

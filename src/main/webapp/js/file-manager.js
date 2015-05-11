@@ -20,6 +20,7 @@ var loadFolder = function(path,element_id) {
                 catch(e)
                 {
                     if (data) {
+                    //todo: parse json and detect error message
                         alert(data);
                     } else {
                         alert("Empty data...");
@@ -165,9 +166,11 @@ var tf = function(path,element_id) {
     }
 }
 
+/*
+function to generate (inner) html from list of dir items
+*/
 var generateHTML = function(data) {
     //console.log(data);
-    //var dir = jQuery.parseJSON( data );
     var dir = JSON.parse(data);
     //console.log(dir.dir);
     var i;
