@@ -1,4 +1,4 @@
-package main.webapp.api.v1;
+package main.java.servlets;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@WebServlet("/UploadServlet")
+@WebServlet("/api/v1/UploadServlet")
 @MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
         maxFileSize=1024*1024*10,      // 10MB
         maxRequestSize=1024*1024*50)   // 50MB
