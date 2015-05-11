@@ -11,7 +11,7 @@
             if (e.getMessage() == null) {
                 out.println("{\"error\" : \"Unhandled java exception: " + e.getClass().toString() + "\"}");
             } else {
-                out.println(e.getMessage());
+                out.println("{\"error\" : \"" + e.getMessage() + "\"}");
             }
         }
     }
