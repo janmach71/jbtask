@@ -135,6 +135,8 @@ public class FileManager {
      * @throws Exception
      */
     public static void getDirJson(Writer out, String dir) throws Exception{
+        if (true)
+            throw new Exception("ahoj");
         String[] array = dir.split("[\\\\/]",-1) ;
         String name="";
         for (int i=0 ;i<array.length;i++) {

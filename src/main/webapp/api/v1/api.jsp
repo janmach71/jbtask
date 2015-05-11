@@ -9,8 +9,7 @@
         catch (Exception e)
         {
             if (e.getMessage() == null) {
-            //todo: format into JSON
-                out.println("Unhandled exception: " + e.getClass().toString());
+                out.println("{\"error\" : \"Unhandled java exception: " + e.getClass().toString() + "\"}");
             } else {
                 out.println(e.getMessage());
             }

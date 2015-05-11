@@ -14,21 +14,17 @@ var loadFolder = function(path,element_id) {
             processData: false,
             type: "GET",
             success: function(data) {
-                try {
-                    displayFolderContent(data,element_id);
-                }
-                catch(e)
-                {
-                    if (data) {
-                    //todo: parse json and detect error message, better error handling needed
-                        alert(e.name + " " + e.message + " " + data);
-                    } else {
-                        alert("Empty data...");
-                    }
+                var obj = JSON.parse(data);
+                if (obj.dir ) {
+                    displayFolderContent(obj,element_id);
+                } else if ( obj.error ) {
+                    alert(obj.error);
+                } else {
+                    throw "JSON data does contain expected content.";
                 }
             },
             error: function () {
-              alert("Error loading folder content..." );
+              alert("Error loading directory content..." );
             }
         });
 }
@@ -86,8 +82,8 @@ Storage.prototype.getOpenedFolders = function() {
 }
 
 
-var displayFolderContent = function(data,element_id) {
-    html = generateHTML(data);
+var displayFolderContent = function(dir,element_id) {
+    html = generateHTML(dir);
     $("#"+element_id)[0].innerHTML=html;
     html = $("#ima_"+element_id+"_ge")[0].innerHTML;
     html = html.replace(".png\"","_o.png\"");
@@ -169,9 +165,7 @@ var tf = function(path,element_id) {
 /*
 function to generate (inner) html from list of dir items
 */
-var generateHTML = function(data) {
-    //console.log(data);
-    var dir = JSON.parse(data);
+var generateHTML = function(dir) {
     //console.log(dir.dir);
     var i;
     var html = "";
