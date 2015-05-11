@@ -14,13 +14,14 @@ var loadFolder = function(path,element_id) {
             processData: false,
             type: "GET",
             success: function(data) {
+            alert(data);
                 var obj = JSON.parse(data);
                 if (obj.dir ) {
                     displayFolderContent(obj,element_id);
                 } else if ( obj.error ) {
                     alert(obj.error);
                 } else {
-                    throw "JSON data does contain expected content.";
+                    throw "JSON data do not contain expected content.";
                 }
             },
             error: function () {
