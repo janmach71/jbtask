@@ -21,7 +21,7 @@ var loadFolder = function(path,element_id) {
                 {
                     if (data) {
                     //todo: parse json and detect error message
-                        alert(data);
+                        alert(e.name + " " + e.message + " " + data);
                     } else {
                         alert("Empty data...");
                     }
