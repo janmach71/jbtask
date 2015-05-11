@@ -20,7 +20,7 @@ var loadFolder = function(path,element_id) {
                 catch(e)
                 {
                     if (data) {
-                    //todo: parse json and detect error message
+                    //todo: parse json and detect error message, better error handling needed
                         alert(e.name + " " + e.message + " " + data);
                     } else {
                         alert("Empty data...");
@@ -193,10 +193,10 @@ var generateHTML = function(data) {
         //console.log(i);
         var element_id = encodeURIComponent(i.n);
         //todo: in some cases this replacement will not be enough
-        element_id = element_id.split("%").join("X25");
-        element_id = element_id.split("#").join("X23");
-        element_id = element_id.split(".").join("X2E");
-        element_id = element_id.split("-").join("X2D");
+        element_id = element_id.split("%").join("X");
+        element_id = element_id.split("#").join("X");
+        element_id = element_id.split(".").join("X");
+        element_id = element_id.split("-").join("X");
         //console.log(element_id);
         switch(i.t) {
         case "image":
