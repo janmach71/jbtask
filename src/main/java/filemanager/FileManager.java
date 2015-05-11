@@ -91,7 +91,10 @@ public class FileManager {
     }
 
     /**
-     * gets list of DirItems inside specified directory inside of specified zip file
+     * Gets list of DirItems inside specified directory inside of specified zip file.
+     * The system is not recursive, ie, it doesn't support archive in archive.
+     * The system doesn't support click through on archived files.
+     * Tye system uses list of dirs inside of the zip. This seems as not mandatory. This function should reconstruct dir tree solely from file names.
      * @param zip path to zip file
      * @param dir absolute path inside of the zip file
      * @return list of DirItems
@@ -104,6 +107,7 @@ public class FileManager {
         if (zipStream == null) {
             return list;
         }
+        //todo: should reconstruct dir tree from file names
         ZipEntry entry=zipStream.getNextEntry();
         String basename=zip + "/";
         while (entry != null) {

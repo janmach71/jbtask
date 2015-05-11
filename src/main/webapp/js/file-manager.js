@@ -192,10 +192,11 @@ var generateHTML = function(data) {
         }
         //console.log(i);
         var element_id = encodeURIComponent(i.n);
-        element_id = element_id.split("%").join("X");
-        element_id = element_id.split("#").join("X");
-        element_id = element_id.split(".").join("X");
-        element_id = element_id.split("-").join("X");
+        //todo: in some cases this replacement will not be enough
+        element_id = element_id.split("%").join("X25");
+        element_id = element_id.split("#").join("X23");
+        element_id = element_id.split(".").join("X2E");
+        element_id = element_id.split("-").join("X2D");
         //console.log(element_id);
         switch(i.t) {
         case "image":
@@ -208,12 +209,14 @@ var generateHTML = function(data) {
             break;
         case "archive":
             html +="<a onclick=\"tf('"+i.n+"','"+element_id+"')\">"
+            //todo: in some cases this replacement will not be enough
             html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/archive.png\"/>&nbsp;";
             html +=name +"</div></a>";
             html +="<div id=\""+element_id+"\"></div>";
             break;
         case "folder":
             html +="<a onclick=\"tf('"+i.n+"','"+element_id+"')\">"
+            //todo: in some cases this replacement will not be enough
             html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/folder.png\"/>&nbsp;";
             html +=name +"</div></a>";
             html +="<div id=\""+element_id+"\"></div>";
