@@ -2,7 +2,7 @@
 var storedFoldersToOpen = [];
 
 $(document).ready(function () {
-    loadStoredFolders("/","X2F");
+    loadStoredFolders("/","X252F");
 });
 
 var loadFolder = function(path,element_id) {
@@ -98,7 +98,7 @@ var closeStoredFolder = function(element_id) {
     var i = 0;
     while ( i <  orders.length ) {
         var el_id = orders[i];
-        if (el_id.indexOf(element_id+"X2F") == 0 ) {
+        if (el_id.indexOf(element_id+"X252F") == 0 ) {
             closeStoredFolder(el_id);
             orders = sessionStorage.getOrderOfOpenedFolders();
         } else {
