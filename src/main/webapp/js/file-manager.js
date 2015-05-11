@@ -96,15 +96,15 @@ var displayFolderContent = function(data,element_id) {
 }
 
 var closeStoredFolder = function(element_id) {
-    localStorage.associateStoredFolders(undefined,element_id);
-    localStorage.removeFromOrderOfOpenedFolders(element_id);
-    var orders = localStorage.getOrderOfOpenedFolders();
+    sessionStorage.associateStoredFolders(undefined,element_id);
+    sessionStorage.removeFromOrderOfOpenedFolders(element_id);
+    var orders = sessionStorage.getOrderOfOpenedFolders();
     var i = 0;
     while ( i <  orders.length ) {
         var el_id = orders[i];
         if (el_id.indexOf(element_id+"X2F") == 0 ) {
             closeStoredFolder(el_id);
-            orders = localStorage.getOrderOfOpenedFolders();
+            orders = sessionStorage.getOrderOfOpenedFolders();
         } else {
             i++;
         }
@@ -120,14 +120,14 @@ var closeFolder = function(element_id) {
 }
 
 var openFolder = function(path,element_id) {
-    localStorage.associateStoredFolders(path,element_id);
-    localStorage.removeFromOrderOfOpenedFolders(element_id);
-    localStorage.addToOrderOfOpenedFolders(element_id);
+    sessionStorage.associateStoredFolders(path,element_id);
+    sessionStorage.removeFromOrderOfOpenedFolders(element_id);
+    sessionStorage.addToOrderOfOpenedFolders(element_id);
     loadFolder(path,element_id);
 }
 
 var isFolderOpened = function(element_id) {
-    var folders=localStorage.getOpenedFolders();
+    var folders=sessionStorage.getOpenedFolders();
     if (typeof folders[element_id] === "undefined") {
         return false;
     }
@@ -135,7 +135,7 @@ var isFolderOpened = function(element_id) {
 }
 
 var loadStoredFolders = function(root,element_id) {
-    var orders = localStorage.getOrderOfOpenedFolders();
+    var orders = sessionStorage.getOrderOfOpenedFolders();
     if ( !orders.length ) {
         openFolder(root,element_id);
         return;
@@ -150,7 +150,7 @@ var loadStoredFolders = function(root,element_id) {
 
 var loadStoredFoldersOneByOne = function() {
     if (storedFoldersToOpen.length) {
-        var folders = localStorage.getOpenedFolders();
+        var folders = sessionStorage.getOpenedFolders();
         var el_id = storedFoldersToOpen[0];
         var path = folders[el_id];
         storedFoldersToOpen.shift();
@@ -193,10 +193,10 @@ var generateHTML = function(data) {
         //console.log(i);
         var element_id = encodeURIComponent(i.n);
         //todo: in some cases this replacement will not be enough
-        element_id = element_id.split("%").join("X");
-        element_id = element_id.split("#").join("X");
-        element_id = element_id.split(".").join("X");
-        element_id = element_id.split("-").join("X");
+        element_id = element_id.split("%").join("X25");
+        element_id = element_id.split("#").join("X23");
+        element_id = element_id.split(".").join("X27");
+        element_id = element_id.split("-").join("X2D");
         //console.log(element_id);
         switch(i.t) {
         case "image":
