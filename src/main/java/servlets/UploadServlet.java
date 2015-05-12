@@ -32,23 +32,24 @@ public class UploadServlet extends HttpServlet {
         String appPath = request.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
         String savePath = /*appPath + File.separator + */ SAVE_DIR;
-        String log = savePath;
 
         // creates the save directory if it does not exists
         File fileSaveDir = new File(savePath);
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdir();
-            log += " created ";
         }
 
         for (Part part : request.getParts()) {
             String fileName = extractFileName(part);
-            log += " ";
-            log += fileName;
-            log += " ";
-            log += savePath + File.separator + fileName;
-            throw new IOException(log);
-            //part.write(savePath + File.separator + fileName);
+            String fName = savePath + File.separator + fileName;
+            File file = new File(fName);
+            if (file.isDirectory()) {
+                throw new IOException("is directory");
+            }
+            if (file.exists()) {
+                throw new IOException("exists");
+            }
+            part.write(savePath + File.separator + fileName);
         }
 
         request.setAttribute("message", "Upload has been done successfully!");
