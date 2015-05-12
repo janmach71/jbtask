@@ -111,14 +111,20 @@ public class DirItem {
         switch (this.type) {
             case image:
                 this.type=Type.a_image;
+                break;
             case text:
                 this.type=Type.a_text;
+                break;
             case archive:
                 this.type=Type.a_archive;
+                break;
             case folder:
                 this.type=Type.a_folder;
+                break;
+            default:
             case unknown:
                 this.type=Type.a_unknown;
+                break;
         }
     }
 

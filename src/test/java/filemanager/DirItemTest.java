@@ -38,7 +38,7 @@ public class DirItemTest extends TestCase {
     public void testSetType() throws Exception {
         DirItem item = new DirItem("ahoj.zip",false);
         Assert.assertEquals(item.getType(), DirItem.Type.archive);
-        item.setType(DirItem.Type.unknown);
-        Assert.assertEquals(item.getType(), DirItem.Type.unknown);
+        item.setArchive();
+        Assert.assertEquals(item.getType(), DirItem.Type.a_archive);
     }
 }
