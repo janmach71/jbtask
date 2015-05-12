@@ -194,17 +194,30 @@ var generateHTML = function(dir) {
         element_id = element_id.split("-").join("X2D");
         //console.log(element_id);
         switch(i.t) {
+        case "a_image":
+            html +="<img src=\"/img/image.png\"/>&nbsp;";
+            html +=name;
+            break;
         case "image":
             html +="<a href=\"/api/v1/GetServlet?p=" + path + "\">";
             html +="<img src=\"/img/image.png\"/>&nbsp;";
             html +=name;
             html += "</a>";
             break;
+        case "a_text":
+            html +="<img src=\"/img/text.png\"/>&nbsp;";
+            html +=name;
+            break;
         case "text":
             html +="<a href=\"/api/v1/GetServlet?p=" + path + "\">";
             html +="<img src=\"/img/text.png\"/>&nbsp;";
             html +=name;
             html += "</a>";
+            break;
+        case "a_archive":
+            //todo: in some cases this replacement will not be enough
+            html +="<img src=\"/img/archive.png\"/>&nbsp;";
+            html +=name;
             break;
         case "archive":
             html +="<a onclick=\"tf('"+i.n+"','"+element_id+"')\">"
@@ -214,6 +227,7 @@ var generateHTML = function(dir) {
             html +="<div id=\""+element_id+"\"></div>";
             break;
         case "folder":
+        case "a_folder":
             html +="<a onclick=\"tf('"+i.n+"','"+element_id+"')\">"
             //todo: in some cases this replacement will not be enough
             html +="<div id=\"ima_"+element_id+"_ge\"><img src=\"/img/folder.png\"/>&nbsp;";
@@ -222,6 +236,7 @@ var generateHTML = function(dir) {
             break;
         default:
         case "unknown":
+        case "a_unknown":
             html +="<img src=\"/img/unknown.png\"/>&nbsp;";
             html +=name;
             break;

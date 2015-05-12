@@ -17,7 +17,12 @@ public class DirItem {
         text,
         archive,
         folder,
-        unknown
+        unknown,
+        a_image,
+        a_text,
+        a_archive,
+        a_folder,
+        a_unknown
     }
     String name;
     Type type;
@@ -100,11 +105,21 @@ public class DirItem {
     }
 
     /**
-     * allows to change DirItem type
-     * @param type new type of DirItem
+     * indicates that item is inside of archive
      */
-    public void setType(Type type) {
-        this.type = type;
+    public void setArchive() {
+        switch (this.type) {
+            case image:
+                this.type=Type.a_image;
+            case text:
+                this.type=Type.a_text;
+            case archive:
+                this.type=Type.a_archive;
+            case folder:
+                this.type=Type.a_folder;
+            case unknown:
+                this.type=Type.a_unknown;
+        }
     }
 
     /**

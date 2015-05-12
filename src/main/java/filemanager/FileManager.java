@@ -117,9 +117,7 @@ public class FileManager {
                     name = name.substring(0,name.length()-1);
                 }
                 DirItem item = new DirItem(basename + name, entry.isDirectory());
-                if (item.getType() == DirItem.Type.archive) {
-                    item.setType(DirItem.Type.unknown);
-                }
+                item.setArchive();
                 list.add(item);
             }
             zipStream.closeEntry();
