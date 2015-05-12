@@ -1,5 +1,6 @@
 <%@ page import = "main.java.filemanager.*" %>
 <%
+    //todo: refactor to servlet
     if (request.getParameter("dir") == null) {
         out.println("Please enter dir name.");
     } else {

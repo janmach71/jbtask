@@ -28,6 +28,8 @@ public class DirItem {
     static {
         types.put("image",Type.image);
         types.put("text",Type.text);
+        types.put("jsp",Type.text);
+        types.put("sql",Type.text);
         types.put("application/zip",Type.archive);
         types.put("application/x-rar-compressed",Type.archive);
         types.put("application/x-7z-compressed",Type.archive);

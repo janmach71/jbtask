@@ -17,8 +17,11 @@ var loadFolder = function(path,element_id) {
                 var obj = JSON.parse(data);
                 if (obj.dir ) {
                     displayFolderContent(obj,element_id);
+                    sessionStorage.associateStoredFolders(path,element_id);
+                    sessionStorage.removeFromOrderOfOpenedFolders(element_id);
+                    sessionStorage.addToOrderOfOpenedFolders(element_id);
                 } else if ( obj.error ) {
-                    alert(obj.error);
+                    alert("Error: " + obj.error + " while loading " + path + ".");
                 } else {
                     throw "JSON data do not contain expected content :\n" + data;
                 }
@@ -116,9 +119,6 @@ var closeFolder = function(element_id) {
 }
 
 var openFolder = function(path,element_id) {
-    sessionStorage.associateStoredFolders(path,element_id);
-    sessionStorage.removeFromOrderOfOpenedFolders(element_id);
-    sessionStorage.addToOrderOfOpenedFolders(element_id);
     loadFolder(path,element_id);
 }
 
@@ -186,6 +186,7 @@ var generateHTML = function(dir) {
         }
         //console.log(i);
         var element_id = encodeURIComponent(i.n);
+        var path = element_id;
         //todo: in some cases this replacement will not be enough
         element_id = element_id.split("%").join("X25");
         element_id = element_id.split("#").join("X23");
@@ -194,12 +195,16 @@ var generateHTML = function(dir) {
         //console.log(element_id);
         switch(i.t) {
         case "image":
+            html +="<a href=\"/api/v1/GetServlet?p=" + path + "\">";
             html +="<img src=\"/img/image.png\"/>&nbsp;";
             html +=name;
+            html += "</a>";
             break;
         case "text":
+            html +="<a href=\"/api/v1/GetServlet?p=" + path + "\">";
             html +="<img src=\"/img/text.png\"/>&nbsp;";
             html +=name;
+            html += "</a>";
             break;
         case "archive":
             html +="<a onclick=\"tf('"+i.n+"','"+element_id+"')\">"
