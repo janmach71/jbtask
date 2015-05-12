@@ -52,8 +52,11 @@ public class GetServlet extends HttpServlet {
                 String mimeType = URLConnection.guessContentTypeFromStream(stream);
                 stream.close();
                 if (mimeType == null) {
-                    response.getWriter().println("Unrecognized file type.");
-                    return;
+                    mimeType = URLConnection.guessContentTypeFromName(path);
+                    if (mimeType == null) {
+                        response.getWriter().println("Unrecognized file type.");
+                        return;
+                    }
                 }
                 response.setContentType(mimeType);
         }
